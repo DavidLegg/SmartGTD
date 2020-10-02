@@ -7,6 +7,8 @@ import datetime as dt
 WITH_YEAR_FMT = cfg('general', 'date_format', 'with_year')
 NO_YEAR_FMT   = cfg('general', 'date_format', 'no_year')
 RELATIVE_DAYS = cfg('general', 'relative_days')
+DEFAULT_TAGS  = cfg('general', 'default_tags')
+HEADER        = cfg('general', 'header_format').format
 
 def relative_date(d):
     '''Returns a description of date d, in # days before/after today if |d - today| is < relative_days.'''
@@ -40,6 +42,12 @@ def one_line(task, include_date = True):
 def display_tasks():
     for task in LocalStore.tasks():
         print(one_line(task))
+
+def gtd_display():
+    for tag in DEFAULT_TAGS:
+        print(HEADER(tag))
+        for task in LocalStore.with_tags([tag]):
+            print(one_line(task))
 
 def add_task():
     name = input('Add Task: ')

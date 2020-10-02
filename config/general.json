@@ -4,5 +4,7 @@
         "no_year": "%-m/%-d",
         "with_year": "%-m/%-d/%y"
     },
-    "relative_days": 7
+    "header_format": "---=== {} ===---",
+    "relative_days": 7,
+    "default_tags": ["focus", "next"]
 }

@@ -31,4 +31,8 @@ class _LocalStore:
         with open(self._filename, 'w') as f:
             json.dump(data, f)
 
+    def with_tags(self, tags):
+        '''Returns a list of tasks with all specified tags.'''
+        return [t for t in self._tasks.values() if all(tag in t.tags for tag in tags)]
+
 LocalStore = _LocalStore()
