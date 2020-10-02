@@ -1,3 +1,8 @@
 {
-    "local_store": "store.json"
+    "local_store": "store.json",
+    "date_format": {
+        "no_year": "%-m/%-d",
+        "with_year": "%-m/%-d/%y"
+    },
+    "relative_days": 7
 }
