@@ -4,12 +4,21 @@ from util import *
 from uuid import uuid4
 import datetime as dt
 from dateutil.parser import isoparse
+from dateutil.parser import parse as date_parse
+
+def _date_or_none(thing):
+    if isinstance(thing, dt.date):
+        return thing
+    elif isinstance(thing, dt.datetime):
+        return thing.date()
+    else:
+        return default(lambda: date_parse(thing))
 
 class Task:
     def __init__(self, name, notes = '', due_date = None, id = None, completed = False, tags = None):
         self.name       = name
         self.notes      = notes
-        self.due_date   = due_date
+        self.due_date   = _date_or_none(due_date)
         self.id         = str(uuid4()) if id is None else id
         self.completed  = completed
         self.tags       = set() if tags is None else set(tags)
@@ -24,7 +33,7 @@ class Task:
             'id'       : self.id,
             'completed': self.completed,
             'due_date' : default(lambda: self.due_date.isoformat()),
-            'tags'     : [str(t) for t in tags]
+            'tags'     : [str(t) for t in self.tags]
         }
 
     @staticmethod

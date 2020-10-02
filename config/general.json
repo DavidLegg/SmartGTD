@@ -6,13 +6,5 @@
     },
     "header_format": "---=== {} ===---",
     "relative_days": 7,
-    "default_tags": ["focus", "next"],
-    "fuzzy_search": {
-        "weights": {
-            "name": 10,
-            "notes": 3,
-            "tag_exact": 4,
-            "tag_partial": 1
-        }
-    }
+    "default_tags": ["focus", "next"]
 }
